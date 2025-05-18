@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>水下光通信机器人 | UOWC Robotics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Reset */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;
+      background:#000;
+      color:#fff;
+      line-height:1.6;
+      scroll-behavior:smooth;
+    }
+    a{color:#0af;text-decoration:none;}
+    header{
+      position:fixed;top:0;left:0;width:100%;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1rem 2rem;z-index:1000;
+      background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);
+    }
+    header .logo{font-size:1.2rem;font-weight:700;letter-spacing:0.1em;}
+    nav ul{display:flex;gap:2rem;list-style:none;}
+    section{padding:6rem 10vw;min-height:100vh;display:flex;flex-direction:column;justify-content:center;}
+    .hero{background:url('placeholder-hero.jpg') center/cover no-repeat;text-shadow:0 0 32px rgba(0,0,0,0.75);}
+    .hero h1{font-size:clamp(2.5rem,6vw,6rem);margin-bottom:1rem;}
+    .hero p{font-size:clamp(1rem,2vw,1.5rem);max-width:40rem;}
+    .grid{display:grid;gap:2rem;}
+    .grid-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+    .card{padding:2rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;backdrop-filter:blur(4px);}
+    .card h3{margin-bottom:1rem;font-size:1.25rem;}
+    table{width:100%;border-collapse:collapse;margin-top:1rem;}
+    th,td{border:1px solid rgba(255,255,255,0.1);padding:0.75rem;text-align:left;}
+    th{background:rgba(255,255,255,0.08);}
+    footer{text-align:center;padding:2rem 0;font-size:0.875rem;background:#050505;}
+    .placeholder{opacity:0.6;}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">UOWC&nbsp;ROBOTICS</div>
+  <nav>
+    <ul>
+      <li><a href="#overview">概览&nbsp;Overview</a></li>
+      <li><a href="#communication">光通信&nbsp;Optical&nbsp;Comms</a></li>
+      <li><a href="#robots">机器人&nbsp;Robots</a></li>
+      <li><a href="#specs">技术规格&nbsp;Specs</a></li>
+      <li><a href="#contact">联系我们&nbsp;Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="overview" class="hero">
+  <h1>水下光通信机器人系统</h1>
+  <p>Cable‑Free, Real‑Time&nbsp;Underwater&nbsp;Control ─ 超低延迟、超高带宽，为自主水下任务赋能。</p>
+</section>
+
+<section id="communication">
+  <h2>为什么选择光通信&nbsp;Why&nbsp;Optical&nbsp;Communication</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>高带宽&nbsp;High&nbsp;Bandwidth</h3><p>&gt;1&nbsp;MHz&nbsp;(@lab)</p></div>
+    <div class="card"><h3>低延迟&nbsp;Low&nbsp;Latency</h3><p>&lt;5&nbsp;ms&nbsp;RTT</p></div>
+    <div class="card"><h3>低误码率&nbsp;Low&nbsp;BER</h3><p>1&nbsp;error&nbsp;/&nbsp;11,600&nbsp;bits</p></div>
+    <div class="card"><h3>经济高效&nbsp;Cost‑Effective</h3><p>&lt;$150&nbsp;系统成本；功耗&lt;1&nbsp;W</p></div>
+    <div class="card"><h3>即插即用&nbsp;Plug‑and‑Play</h3><p>快速部署，无需缆线</p></div>
+    <div class="card"><h3>绿色/蓝色双波长&nbsp;Dual‑Wavelength</h3><p>525&nbsp;nm&nbsp;(上行)、450&nbsp;nm&nbsp;(下行)</p></div>
+  </div>
+</section>
+
+<section id="robots">
+  <h2>机器人家族&nbsp;Robotic&nbsp;Platforms</h2>
+  <div class="grid grid-3">
+    <div class="card">
+      <h3>水面船只&nbsp;Unmanned&nbsp;Surface&nbsp;Vehicle&nbsp;(USV)</h3>
+      <ul>
+        <li>集成视觉定位&nbsp;(Vision‑based&nbsp;Localization)</li>
+        <li>闭环控制&nbsp;(CBF‑based)</li>
+        <li>续航：<span class="placeholder">TBD</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>水下潜航器&nbsp;Remotely&nbsp;Operated&nbsp;Vehicle&nbsp;(ROV)</h3>
+      <ul>
+        <li>全向推进&nbsp;(6‑DoF&nbsp;Thrusters)</li>
+        <li>光通信收发&nbsp;(Optical&nbsp;Transceiver)</li>
+        <li>最大深度：<span class="placeholder">TBD</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>未来模块&nbsp;Future&nbsp;Modules</h3>
+      <ul>
+        <li>多机协同&nbsp;(Swarm&nbsp;Control)</li>
+        <li>MESH&nbsp;Networking</li>
+        <li>OTA&nbsp;Update</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>技术规格&nbsp;Specifications</h2>
+
+  <h3>通信性能&nbsp;Communication&nbsp;Performance</h3>
+  <table>
+    <tr><th>参数&nbsp;Parameter</th><th>数值&nbsp;Value</th><th>备注&nbsp;Notes</th></tr>
+    <tr><td>带宽&nbsp;Bandwidth</td><td>&gt;1&nbsp;MHz</td><td>实验数据*</td></tr>
+    <tr><td>时延&nbsp;Latency</td><td>&lt;5&nbsp;ms</td><td>往返时间*</td></tr>
+    <tr><td>误码率&nbsp;BER</td><td>1/11,600</td><td>Bit&nbsp;error&nbsp;rate*</td></tr>
+    <tr><td>功耗&nbsp;Power</td><td>&lt;1&nbsp;W</td><td>Transceiver*</td></tr>
+    <tr><td>系统成本&nbsp;Cost</td><td>&lt;$150</td><td>BOM*</td></tr>
+    <tr><td>有效距离&nbsp;Range</td><td>4–5&nbsp;m</td><td>清水环境</td></tr>
+  </table>
+
+  <h3>器件参数&nbsp;Component&nbsp;Specs</h3>
+  <table>
+    <tr><th>器件&nbsp;Component</th><th>规格&nbsp;Spec</th><th>占位&nbsp;Placeholder</th></tr>
+    <tr><td>LED&nbsp;(450&nbsp;nm)</td><td>光功率&nbsp;Optical&nbsp;Power</td><td class="placeholder">TBD</td></tr>
+    <tr><td>LED&nbsp;(525&nbsp;nm)</td><td>光功率&nbsp;Optical&nbsp;Power</td><td class="placeholder">TBD</td></tr>
+    <tr><td>MOSFET&nbsp;Driver</td><td>上升/下降时间&nbsp;Rise/Fall&nbsp;Time</td><td class="placeholder">TBD</td></tr>
+    <tr><td>TIA</td><td>增益‑带宽&nbsp;Gain‑Bandwidth</td><td class="placeholder">TBD</td></tr>
+    <tr><td>Band‑pass&nbsp;Filter</td><td>中心频率&nbsp;Center&nbsp;Freq.</td><td class="placeholder">TBD</td></tr>
+    <tr><td>Dynamic&nbsp;Comparator</td><td>阈值范围&nbsp;Threshold</td><td class="placeholder">TBD</td></tr>
+  </table>
+</section>
+
+<section id="contact">
+  <h2>联系我们&nbsp;Contact&nbsp;Us</h2>
+  <p>邮箱&nbsp;Email:&nbsp;<a href="mailto:info@uowc-robotics.com">info@uowc-robotics.com</a></p>
+</section>
+
+<footer>
+  ©&nbsp;2025&nbsp;UOWC Robotics. All rights reserved.
+</footer>
+
+</body>
+</html>
