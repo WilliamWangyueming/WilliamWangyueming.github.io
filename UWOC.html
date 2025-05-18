@@ -13,6 +13,7 @@
       color: #fff;
       line-height: 1.6;
       scroll-behavior: smooth;
+      padding-top: 60px; /* 添加顶部内边距，与header高度相匹配 */
     }
     a { color: #0af; text-decoration: none; }
     /* HEADER */
@@ -21,14 +22,33 @@
       display: flex; justify-content: space-between; align-items: center;
       padding: 1rem 2rem; z-index: 1000;
       background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px);
+      height: 60px; /* 固定header高度 */
     }
     header .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.1em; }
     nav ul { display: flex; gap: 2rem; list-style: none; }
     /* SECTIONS */
-    section { padding: 6rem 10vw; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    section { 
+      padding: 6rem 10vw; 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+    }
+    
+    /* 修正锚点定位的问题 */
+    section:before {
+      content: "";
+      display: block;
+      height: 60px; /* 与header高度相同 */
+      margin: -60px 0 0; /* 负margin与height相同 */
+      visibility: hidden;
+      pointer-events: none;
+    }
+    
     .hero {
       background: url('placeholder-hero.jpg') center/cover no-repeat;
       text-shadow: 0 0 32px rgba(0, 0, 0, 0.75);
+      padding-top: 6rem; /* 确保内容不被header遮挡 */
     }
     .hero h1 { font-size: clamp(2.5rem, 6vw, 6rem); margin-bottom: 1rem; }
     .hero p { font-size: clamp(1rem, 2vw, 1.5rem); max-width: 40rem; }
@@ -49,12 +69,83 @@
     th { background: rgba(255, 255, 255, 0.08); }
     footer { text-align: center; padding: 2rem 0; font-size: 0.875rem; background: #050505; }
     .placeholder { opacity: 0.6; }
+    
     /* MOBILE */
-    @media (max-width: 600px) {
-      nav ul { flex-direction: column; gap: 1rem; background: rgba(0,0,0,0.85); padding: 1rem; border-radius: 0.5rem; }
-      section { padding: 5rem 1rem; }
-      .hero h1 { font-size: 2.5rem; }
-      .hero p { font-size: 1rem; }
+    @media (max-width: 768px) {
+      body {
+        padding-top: 60px; /* 确保内容不被header遮挡 */
+      }
+      
+      header {
+        padding: 0.75rem 1rem;
+      }
+      
+      nav {
+        position: relative;
+      }
+      
+      /* 汉堡菜单按钮 */
+      .menu-toggle {
+        display: block;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        cursor: pointer;
+      }
+      
+      .menu-toggle span {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: #fff;
+        border-radius: 2px;
+        transition: all 0.25s ease-in-out;
+      }
+      
+      .menu-toggle span:nth-child(1) {
+        top: 0px;
+      }
+      
+      .menu-toggle span:nth-child(2) {
+        top: 10px;
+      }
+      
+      .menu-toggle span:nth-child(3) {
+        top: 20px;
+      }
+      
+      nav ul { 
+        flex-direction: column; 
+        gap: 1rem; 
+        background: rgba(0,0,0,0.95); 
+        padding: 1rem; 
+        border-radius: 0.5rem;
+        position: absolute;
+        top: 42px; /* 调整距离顶部的位置 */
+        right: 0;
+        min-width: 180px;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        z-index: 1000;
+      }
+      
+      nav ul.show {
+        display: flex;
+      }
+      
+      section { 
+        padding: 5rem 1rem; 
+      }
+      
+      .hero h1 { 
+        font-size: 2.5rem; 
+        padding-top: 2rem; /* 确保标题不被隐藏 */
+      }
+      
+      .hero p { 
+        font-size: 1rem; 
+      }
     }
   </style>
 </head>
@@ -63,6 +154,11 @@
 <header>
   <div class="logo">UOWC&nbsp;ROBOTICS</div>
   <nav>
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <ul>
       <li><a href="#overview">Overview</a></li>
       <li><a href="#communication">Optical&nbsp;Comms</a></li>
@@ -107,7 +203,7 @@
       <ul>
         <li>6‑DoF Thrusters</li>
         <li>Optical Communication Module</li>
-        <li>Max depth: 1‑5 m</li>
+        <li>Max depth: 1‑5 m</li>
       </ul>
     </div>
     <div class="card">
@@ -128,12 +224,12 @@
   <table>
     <col style="width: 33%"><col style="width: 33%"><col style="width: 34%">
     <tr><th>Parameter</th><th>Value</th><th>Notes</th></tr>
-    <tr><td>Bandwidth</td><td>&gt;1 MHz</td><td>Lab measurement*</td></tr>
-    <tr><td>Latency</td><td>&lt;5 ms</td><td>Round‑trip*</td></tr>
-    <tr><td>Bit‑error rate</td><td>1/11 600</td><td>BER*</td></tr>
-    <tr><td>Power consumption</td><td>&lt;1 W</td><td>Transceiver*</td></tr>
+    <tr><td>Bandwidth</td><td>&gt;1 MHz</td><td>Lab measurement*</td></tr>
+    <tr><td>Latency</td><td>&lt;5 ms</td><td>Round‑trip*</td></tr>
+    <tr><td>Bit‑error rate</td><td>1/11 600</td><td>BER*</td></tr>
+    <tr><td>Power consumption</td><td>&lt;1 W</td><td>Transceiver*</td></tr>
     <tr><td>System cost</td><td>&lt;$150</td><td>BOM*</td></tr>
-    <tr><td>Effective range</td><td>4–5 m</td><td>Clear water</td></tr>
+    <tr><td>Effective range</td><td>4–5 m</td><td>Clear water</td></tr>
   </table>
 
   <!-- Transmitter components -->
@@ -141,9 +237,9 @@
   <table>
     <col style="width: 33%"><col style="width: 33%"><col style="width: 34%">
     <tr><th>Component</th><th>Spec</th><th>Value</th></tr>
-    <tr><td>LED (450 nm)</td><td>Optical power</td><td>1–3 W</td></tr>
-    <tr><td>LED (525 nm)</td><td>Optical power</td><td>1–3 W</td></tr>
-    <tr><td>MOSFET driver</td><td>Switching timing</td><td>t<sub>D(on)</sub>=3 ns, t<sub>r</sub>=2.5 ns, t<sub>D(off)</sub>=25 ns, t<sub>f</sub>=4 ns</td></tr>
+    <tr><td>LED (450 nm)</td><td>Optical power</td><td>1–3 W</td></tr>
+    <tr><td>LED (525 nm)</td><td>Optical power</td><td>1–3 W</td></tr>
+    <tr><td>MOSFET driver</td><td>Switching timing</td><td>t<sub>D(on)</sub>=3 ns, t<sub>r</sub>=2.5 ns, t<sub>D(off)</sub>=25 ns, t<sub>f</sub>=4 ns</td></tr>
   </table>
 
   <!-- Receiver components -->
@@ -151,16 +247,16 @@
   <table>
     <col style="width: 33%"><col style="width: 33%"><col style="width: 34%">
     <tr><th>Component</th><th>Spec</th><th>Value</th></tr>
-    <tr><td rowspan="5">Photodiode (PD)</td><td>Peak sensitivity wavelength</td><td>λ<sub>MAX</sub>=550 nm</td></tr>
-    <tr><td>Spectral range</td><td>400–700 nm</td></tr>
+    <tr><td rowspan="5">Photodiode (PD)</td><td>Peak sensitivity wavelength</td><td>λ<sub>MAX</sub>=550 nm</td></tr>
+    <tr><td>Spectral range</td><td>400–700 nm</td></tr>
     <tr><td>Acceptance half-angle</td><td>60° half‑angle</td></tr>
-    <tr><td>Rise time</td><td>t<sub>r</sub>=4 µs (V<sub>R</sub>=5 V, R<sub>L</sub>=1 kΩ)</td></tr>
-    <tr><td>Fall time</td><td>t<sub>f</sub>=6 µs (V<sub>R</sub>=5 V, R<sub>L</sub>=1 kΩ)</td></tr>
-    <tr><td rowspan="3">TIA</td><td>Input noise</td><td>4.8 nV/√Hz</td></tr>
-    <tr><td>Gain-bandwidth product</td><td>1.6 GHz</td></tr>
-    <tr><td>Bandwidth @ G=10</td><td>275 MHz</td></tr>
-    <tr><td>Band‑pass filter</td><td>Center frequency</td><td>300 kHz</td></tr>
-    <tr><td>Dynamic comparator</td><td>Threshold range</td><td>0–3.3 V</td></tr>
+    <tr><td>Rise time</td><td>t<sub>r</sub>=4 µs (V<sub>R</sub>=5 V, R<sub>L</sub>=1 kΩ)</td></tr>
+    <tr><td>Fall time</td><td>t<sub>f</sub>=6 µs (V<sub>R</sub>=5 V, R<sub>L</sub>=1 kΩ)</td></tr>
+    <tr><td rowspan="3">TIA</td><td>Input noise</td><td>4.8 nV/√Hz</td></tr>
+    <tr><td>Gain-bandwidth product</td><td>1.6 GHz</td></tr>
+    <tr><td>Bandwidth @ G=10</td><td>275 MHz</td></tr>
+    <tr><td>Band‑pass filter</td><td>Center frequency</td><td>300 kHz</td></tr>
+    <tr><td>Dynamic comparator</td><td>Threshold range</td><td>0–3.3 V</td></tr>
   </table>
 
   <!-- Receiver and Transmitter PCB Images -->
@@ -176,9 +272,6 @@
   </div>
 </section>
 
-
-
-
 <section id="contact">
   <h2>Contact</h2>
   <p>Yifan&nbsp;Gong – <a href="mailto:yifan.gong@student.unimelb.edu.au">yifan.gong@student.unimelb.edu.au</a></p>
@@ -187,8 +280,37 @@
 </section>
 
 <footer>
-  © 2025 UOWC Robotics. All rights reserved.
+  © 2025 UOWC Robotics. All rights reserved.
 </footer>
+
+<!-- 添加移动端菜单切换JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navUl = document.querySelector('nav ul');
+    const navLinks = document.querySelectorAll('nav ul li a');
+    
+    // 点击汉堡菜单切换导航显示
+    menuToggle.addEventListener('click', function(e) {
+      navUl.classList.toggle('show');
+      e.stopPropagation();
+    });
+    
+    // 点击导航链接后隐藏菜单
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navUl.classList.remove('show');
+      });
+    });
+    
+    // 点击页面其他区域隐藏菜单
+    document.addEventListener('click', function(e) {
+      if (!navUl.contains(e.target) && e.target !== menuToggle) {
+        navUl.classList.remove('show');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
