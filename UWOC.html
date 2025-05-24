@@ -24,7 +24,20 @@
       background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px);
       height: 60px; /* 固定header高度 */
     }
-    header .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.1em; }
+    header .logo { 
+      font-size: 1.2rem; 
+      font-weight: 700; 
+      letter-spacing: 0.1em; 
+      height: 150px;
+      display: flex;
+      align-items: center;
+      margin-top: 90px;
+    }
+    header .logo img {
+      height: 150px;
+      width: auto;
+      object-fit: contain;
+    }
     nav ul { display: flex; gap: 2rem; list-style: none; }
     /* SECTIONS */
     section { 
@@ -152,7 +165,9 @@
 <body>
 
 <header>
-  <div class="logo">UOWC&nbsp;ROBOTICS</div>
+  <div class="logo">
+    <img src="logo.png" alt="UOWC ROBOTICS" />
+  </div>
   <nav>
     <div class="menu-toggle">
       <span></span>
@@ -181,7 +196,7 @@
     <div class="card"><h3>Low Latency</h3><p>&lt;5&nbsp;ms RTT</p></div>
     <div class="card"><h3>Low BER</h3><p>1&nbsp;error / 11&nbsp;600 bits</p></div>
     <div class="card"><h3>Cost‑Effective</h3><p>&lt;$150 system cost; power &lt;1&nbsp;W</p></div>
-    <div class="card"><h3>Plug‑and‑Play</h3><p>Rapid deployment, no tether</p></div>
+    <div class="card"><h3>Plug‑and‑Play</h3><p>Rapid deployment, no tether，no private protocol</p></div>
     <div class="card"><h3>Dual Wavelength</h3><p>525&nbsp;nm (uplink), 450&nbsp;nm (downlink)</p></div>
   </div>
 </section>
